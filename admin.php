@@ -55,13 +55,27 @@ if (!isset($_SESSION['username'])) {
 			<li class="nav-item">
     			<a class="nav-link" href="admin.php?page=article">Article</a>
 			</li>
+            <li class="nav-item">
+    			<a class="nav-link" href="admin.php?page=gallery">Gallery</a>
+			</li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle text-danger fw-bold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                     <?= $_SESSION['username']?>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="logout.php">Logout</a></li> 
+                    <li>
+                        <a class="dropdown-item" href="admin.php?page=profile">
+                            <i class="bi bi-person-circle"></i> Profile
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="logout.php">
+                            <i class="bi bi-box-arrow-right"></i> Logout
+                        </a>
+                    </li>
                 </ul>
+
             </li> 
         </ul>
         </div>

@@ -89,7 +89,7 @@ include "koneksi.php";
   <!-- article begin -->
   <section id="article" class="text-center p-5">
     <div class="container">
-      <h1 class="fw-bold display-4 pb-3">article</h1>
+      <h1 class="fw-bold display-4 pb-3">Article</h1>
        <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
        <?php
        $sql = "SELECT * FROM article ORDER BY tanggal DESC";
@@ -102,11 +102,11 @@ include "koneksi.php";
         <div class="card h-100">
           <img src="img/<?= $row["gambar"]?>" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title"><?= $row["judul"]?></h5>
+            <h5><?= $row['deskripsi']; ?></h5>
             <p class="card-text">
               <?= $row["isi"]?>
             </p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
+            <p class="card-text"><small class="text-body-secondary"></small></p>
           </div>
           <div class="card-footer">
             <small class="text-body-secondary">
@@ -126,24 +126,32 @@ include "koneksi.php";
   <!-- gallery begin -->
   <section id="gallery" class="text-center p-5 bg-danger-subtle">
     <div class="container">
-      <h1 class="fw-bold display-4 pb-3">gallery</h1>
+      <h1 class="fw-bold display-4 pb-3">Gallery</h1>
       <div id="carouselExample" class="carousel slide">
         <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="img/dieng.jpeg" class="d-block w-100" alt="...">
+          <div class="carousel-inner">
+          <?php
+          $no = 0;
+          $sql = "SELECT * FROM gallery ORDER BY id DESC";
+          $hasil = $conn->query($sql);
+
+          while($row = $hasil->fetch_assoc()){
+          ?>
+          <div class="carousel-item <?= ($no==0)?'active':'' ?>">
+            <img src="img/<?= $row['gambar']; ?>" 
+              class="d-block w-100" 
+              style="height:400px; object-fit:cover;">
+
+          <div class="carousel-caption d-none d-md-block">
+            <h5><?= $row['judul']; ?></h5>
+            <p><?= $row['deskripsi']; ?></p>
           </div>
-          <div class="carousel-item">
-            <img src="img/kawahijen.jpeg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="img/parangtritis.jpeg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="img/badakjawa.jpeg" class="d-block w-100" alt="...">
-          </div>
-          <div class="carousel-item">
-            <img src="img/bromo.jpeg" class="d-block w-100" alt="...">
-          </div>
+        </div>
+        <?php
+        $no++;
+        }
+        ?>
+        </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -160,7 +168,7 @@ include "koneksi.php";
   <!-- schedule begin -->
   <section id="schedule" class="py-5">
     <div class="container">
-      <h1 class="text-center fw-bold mb-4">schedule</h1>
+      <h1 class="text-center fw-bold mb-4">Schedule</h1>
       <div class="row g-4">
         <div class="col-12 col-sm-6 col-lg-3">
           <div class="card text-center p-3 shadow-sm">
@@ -207,7 +215,7 @@ include "koneksi.php";
   <!-- about begin -->
    <section id="about" class="py-5 bg-danger-subtle">
     <div class="container">
-      <h1 class="text-center fw-bold mb-4">about me</h1>
+      <h1 class="text-center fw-bold mb-4">About Me</h1>
       <div class="accordion" id="accordionExample">
         <div class="accordion-item">
           <h2 class="accordion-header" id="headingOne">
